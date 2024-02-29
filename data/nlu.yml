@@ -89,3 +89,15 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: about_curriculam_portal_bn
+  examples: |
+    - শিক্ষাক্রম বাতায়ন কী?
+    - কারিকুলাম পোর্টাল কী?
+    - কারিকুলাম পোর্টাল সম্পর্কে কিছু বলুন
+    - শিক্ষাক্রম বাতায়ন সম্পর্কে কিছু বলুন
+
+- intent: about_curriculam_portal_en
+  examples: |
+    - what is curriculam portal?
+    - tell me somethings about curriculam portal?
