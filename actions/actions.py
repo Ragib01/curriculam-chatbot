@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from typing import Any, Text, Dict, List
 import pandas as pd
 import requests
@@ -6,6 +7,8 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 
+# Load environment variables from .env file
+load_dotenv()
 
 class RestaurantAPI(object):
 
@@ -42,7 +45,8 @@ class ChatGPT(object):
             headers=self.headers,
             json=body,
         )
-        return result.json()["choices"][0]["message"]["content"]
+        response_json = result.json()  # Log the entire JSON response
+        return response_json.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
 
 restaurant_api = RestaurantAPI()
 chatGPT = ChatGPT()
@@ -56,6 +60,7 @@ class ActionShowRestaurants(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        restaurant_api = RestaurantAPI()
         restaurants = restaurant_api.fetch_restaurants()
         results = restaurant_api.format_restaurants(restaurants)
         readable = restaurant_api.format_restaurants(restaurants[['Restaurants', 'Rating']], header=False)
@@ -72,6 +77,7 @@ class ActionRestaurantsDetail(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        chatGPT = ChatGPT()
         previous_results = tracker.get_slot("results")
         question = tracker.latest_message["text"]
         answer = chatGPT.ask(previous_results, question)

@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # rasa 
-
+.rasa/
 
 # C extensions
 *.so
