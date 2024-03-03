@@ -11,3 +11,13 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: show restaurants
+  steps:
+  - intent: restaurants
+  - action: action_show_restaurants
+
+- rule: show detail
+  steps:
+  - intent: detail
+  - action: action_restaurants_detail

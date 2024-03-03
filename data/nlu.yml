@@ -101,3 +101,16 @@ nlu:
   examples: |
     - what is curriculam portal?
     - tell me somethings about curriculam portal?
+
+- intent: restaurants
+  examples: |
+    - show me places to eat
+    - I'm looking for a great restaurant
+    - show me food
+
+- intent: detail
+  examples: |
+    - which of those have wifi?
+    - what's the highest rated?
+    - does the chinese place do takeaway?
+    - does the mexican one have wifi
