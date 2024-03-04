@@ -117,7 +117,7 @@ nlu:
 
 - intent: detail
   examples: |
-    - which of those have wifi?
-    - what's the highest rated?
-    - does the chinese place do takeaway?
-    - does the mexican one have wifi
+    - what's the highest rated? <!-- language:en -->
+    - Highest rated course <!-- language:en -->
+    - কোনটি ভালো কোর্স? <!-- language:bn -->
+    - সর্বোচ্চ রেট দেওয়া কোর্স <!-- language:bn -->
