@@ -39,8 +39,8 @@ class ChatGPT(object):
             "Answer in a complete sentence and don't say anything else."
 
     def ask(self, courses, question):
+        print(courses, question)
         content  = self.prompt + "\n\n" + courses + "\n\n" + question
-        print(content)
         body = {
             "model":self.model, 
             "messages":[{"role": "user", "content": content}]
