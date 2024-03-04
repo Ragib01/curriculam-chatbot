@@ -40,6 +40,7 @@ class ChatGPT(object):
 
     def ask(self, courses, question):
         content  = self.prompt + "\n\n" + courses + "\n\n" + question
+        print(content)
         body = {
             "model":self.model, 
             "messages":[{"role": "user", "content": content}]
