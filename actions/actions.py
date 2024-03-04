@@ -23,7 +23,7 @@ class RestaurantAPI(object):
         html = "<table style='border-collapse: collapse; border: 1px solid black;'>"
         html += "<tr><th style='border: 1px solid black;'>কোর্সের নাম</th><th style='border: 1px solid black;'>রেটিং</th><th style='border: 1px solid black;'>প্রদানকারী</th><th style='border: 1px solid black;'>সময়</th></tr>"
         for _, row in df.iterrows():
-            html += f"<tr><td style='border: 1px solid black;'>{row['Restaurants']}</td><td style='border: 1px solid black;'>{row['Rating']}</td><td style='border: 1px solid black;'>{row['Has WiFi']}</td><td style='border: 1px solid black;'>{row['cuisine']}</td></tr>"
+            html += f"<tr><td style='border: 1px solid black;'>{row['course_name_bn']}</td><td style='border: 1px solid black;'>{row['Rating']}</td><td style='border: 1px solid black;'>{row['provider']}</td><td style='border: 1px solid black;'>{row['time']}</td></tr>"
         html += "</table>"
         return html
 
