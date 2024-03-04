@@ -104,9 +104,15 @@ nlu:
 
 - intent: restaurants
   examples: |
-    - show me places to eat
-    - I'm looking for a great restaurant
-    - show me food
+    - show me some courses
+    - Can you recommend any courses?
+    - What courses do you offer?
+    - I'm interested in your courses, can you tell me more?
+    - What are the available courses?
+    - I'm looking to enroll in a course, can you suggest one?
+    - Could you please list the courses you offer?
+    - I'm interested in learning something new, what courses do you recommend?
+    - Can you provide me with information about your course catalog?
 
 - intent: detail
   examples: |

@@ -1,0 +1,10 @@
+{
+    "restaurants": [
+        {
+            "Restaurants": "abc",
+            "Rating": "4.5",
+            "Has WiFi": "FALSE",
+            "cuisine": "italian"
+        }
+    ]
+}
