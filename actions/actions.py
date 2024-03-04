@@ -38,8 +38,8 @@ class ChatGPT(object):
         self.prompt = "Answer the following question, based on the data shown. " \
             "Answer in a complete sentence and don't say anything else."
 
-    def ask(self, restaurants, question):
-        content  = self.prompt + "\n\n" + restaurants + "\n\n" + question
+    def ask(self, courses, question):
+        content  = self.prompt + "\n\n" + courses + "\n\n" + question
         body = {
             "model":self.model, 
             "messages":[{"role": "user", "content": content}]
@@ -63,8 +63,8 @@ class ActionShowRestaurants(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         restaurant_api = RestaurantAPI()
-        restaurants = restaurant_api.fetch_restaurants()
-        html_table = restaurant_api.format_restaurants(restaurants)
+        courses = restaurant_api.fetch_restaurants()
+        html_table = restaurant_api.format_restaurants(courses)
         dispatcher.utter_message(text=f"নিচে কিছু কোর্সের তালিকা দেওয়া হল:\n\n{html_table}")
 
         return []
