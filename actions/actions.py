@@ -93,9 +93,10 @@ class RestaurantAPI(object):
         return pd.DataFrame(self.db["restaurants"])
 
     def format_restaurants(self, df) -> str:
-        html = "<table style='border: 1px solid #000';><tr style='border: 1px solid #000';><th style='border: 1px solid #000';>Restaurants</th><th style='border: 1px solid #000';>Rating</th><th style='border: 1px solid #000';>Has WiFi</th><th style='border: 1px solid #000';>Cuisine</th></tr>"
+        html = "<table style='border-collapse: collapse; border: 1px solid black;'>"
+        html += "<tr><th style='border: 1px solid black;'>Restaurants</th><th style='border: 1px solid black;'>Rating</th><th style='border: 1px solid black;'>Has WiFi</th><th style='border: 1px solid black;'>Cuisine</th></tr>"
         for _, row in df.iterrows():
-            html += f"<tr style='border: 1px solid #000';><td style='border: 1px solid #000';>{row['Restaurants']}</td><td style='border: 1px solid #000';>{row['Rating']}</td><td style='border: 1px solid #000';>{row['Has WiFi']}</td><td style='border: 1px solid #000';>{row['cuisine']}</td></tr>"
+            html += f"<tr><td style='border: 1px solid black;'>{row['Restaurants']}</td><td style='border: 1px solid black;'>{row['Rating']}</td><td style='border: 1px solid black;'>{row['Has WiFi']}</td><td style='border: 1px solid black;'>{row['cuisine']}</td></tr>"
         html += "</table>"
         return html
 
