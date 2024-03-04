@@ -104,15 +104,16 @@ nlu:
 
 - intent: restaurants
   examples: |
-    - show me some courses
-    - Can you recommend any courses?
-    - What courses do you offer?
-    - I'm interested in your courses, can you tell me more?
-    - What are the available courses?
-    - I'm looking to enroll in a course, can you suggest one?
-    - Could you please list the courses you offer?
-    - I'm interested in learning something new, what courses do you recommend?
-    - Can you provide me with information about your course catalog?
+    - show me some courses <!-- language:en -->
+    - Can you recommend any courses? <!-- language:en -->
+    - What courses do you offer? <!-- language:en -->
+    - I'm interested in your courses, can you tell me more? <!-- language:en -->
+    - What are the available courses? <!-- language:en -->
+    - কোর্স দেখান <!-- language:bn -->
+    - কি কি কোর্স আছে? <!-- language:bn -->
+    - আপনি কি কোনও কোর্স সুপারিশ করতে পারেন? <!-- language:bn -->
+    - আপনি কোন কোর্স অফার করছেন? <!-- language:bn -->
+    - আমি আপনার কোর্সগুলির উপর আগ্রহী, আপনি আরো কিছু বলতে পারেন? <!-- language:bn -->
 
 - intent: detail
   examples: |
