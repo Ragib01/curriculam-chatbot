@@ -117,7 +117,7 @@ nlu:
 
 - intent: detail
   examples: |
-    - what's the highest rated? <!-- language:en -->
-    - Highest rated course <!-- language:en -->
-    - কোনটি ভালো কোর্স? <!-- language:bn -->
-    - সর্বোচ্চ রেট দেওয়া কোর্স <!-- language:bn -->
+    - what's the highest rated?
+    - Highest rated course
+    - কোনটি ভালো কোর্স?
+    - সর্বোচ্চ রেট দেওয়া কোর্স
