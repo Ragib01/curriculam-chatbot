@@ -80,6 +80,7 @@ class ActionRestaurantsDetail(Action):
 
         chatGPT = ChatGPT()
         previous_results = tracker.get_slot("results")
+        print(previous_results)
         question = tracker.latest_message["text"]
         answer = chatGPT.ask(previous_results, question)
         dispatcher.utter_message(text = answer)
