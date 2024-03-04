@@ -105,6 +105,7 @@ nlu:
 - intent: courses
   examples: |
     - show me some courses <!-- language:en -->
+    - show courses
     - Can you recommend any courses? <!-- language:en -->
     - What courses do you offer? <!-- language:en -->
     - I'm interested in your courses, can you tell me more? <!-- language:en -->
