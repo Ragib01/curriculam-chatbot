@@ -17,7 +17,7 @@ class RestaurantAPI(object):
             self.db = json.load(json_file)
 
     def fetch_restaurants(self):
-        return pd.DataFrame(self.db["restaurants"])
+        return pd.DataFrame(self.db["courses"])
 
     def format_restaurants(self, df) -> str:
         html = "<table style='border-collapse: collapse; border: 1px solid black;'>"
