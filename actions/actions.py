@@ -86,7 +86,7 @@ load_dotenv()
 
 class RestaurantAPI(object):
     def __init__(self):
-        with open("restaurants.json", "r") as json_file:
+        with open("courses.json", "r") as json_file:
             self.db = json.load(json_file)
 
     def fetch_restaurants(self):
