@@ -16,7 +16,7 @@ intents:
   - mood_unhappy
   - bot_challenge
   - about_curriculam_portal_bn
-  - restaurants
+  - courses
   - detail
 
 responses:

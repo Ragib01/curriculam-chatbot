@@ -102,7 +102,7 @@ nlu:
     - what is curriculam portal?
     - tell me somethings about curriculam portal?
 
-- intent: restaurants
+- intent: courses
   examples: |
     - show me some courses <!-- language:en -->
     - Can you recommend any courses? <!-- language:en -->
