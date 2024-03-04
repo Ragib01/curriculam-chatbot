@@ -93,7 +93,7 @@ class RestaurantAPI(object):
         return pd.DataFrame(self.db["restaurants"])
 
     def format_restaurants(self, df) -> str:
-        html = "<table><tr><th>Restaurants</th><th>Rating</th><th>Has WiFi</th><th>Cuisine</th></tr>"
+        html = "<table style='border: 1px solid #000';><tr><th>Restaurants</th><th>Rating</th><th>Has WiFi</th><th>Cuisine</th></tr>"
         for _, row in df.iterrows():
             html += f"<tr><td>{row['Restaurants']}</td><td>{row['Rating']}</td><td>{row['Has WiFi']}</td><td>{row['cuisine']}</td></tr>"
         html += "</table>"
