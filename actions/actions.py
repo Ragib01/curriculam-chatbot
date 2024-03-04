@@ -92,8 +92,12 @@ class RestaurantAPI(object):
     def fetch_restaurants(self):
         return pd.DataFrame(self.db["restaurants"])
 
-    def format_restaurants(self, df, header=True) -> Text:
-        return df.to_json(orient="records", lines=True)
+    def format_restaurants(self, df) -> str:
+        html = "<table><tr><th>Restaurants</th><th>Rating</th><th>Has WiFi</th><th>Cuisine</th></tr>"
+        for _, row in df.iterrows():
+            html += f"<tr><td>{row['Restaurants']}</td><td>{row['Rating']}</td><td>{row['Has WiFi']}</td><td>{row['cuisine']}</td></tr>"
+        html += "</table>"
+        return html
 
 class ChatGPT(object):
     def __init__(self):
@@ -132,11 +136,10 @@ class ActionShowRestaurants(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         restaurant_api = RestaurantAPI()
         restaurants = restaurant_api.fetch_restaurants()
-        results = restaurant_api.format_restaurants(restaurants)
-        readable = restaurant_api.format_restaurants(restaurants[['Restaurants', 'Rating']], header=False)
-        dispatcher.utter_message(text=f"Here are some restaurants:\n\n{readable}")
+        html_table = restaurant_api.format_restaurants(restaurants)
+        dispatcher.utter_message(text=f"Here are some restaurants:\n\n{html_table}")
 
-        return [SlotSet("results", results)]
+        return []
 
 class ActionRestaurantsDetail(Action):
     def name(self) -> Text:
