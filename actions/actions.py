@@ -68,7 +68,7 @@ class ActionShowRestaurants(Action):
         html_table = restaurant_api.format_restaurants(courses)
         dispatcher.utter_message(text=f"নিচে কিছু কোর্সের তালিকা দেওয়া হল:\n\n{html_table}")
 
-        return []
+        return [SlotSet("results", html_table)]
 
 class ActionRestaurantsDetail(Action):
     def name(self) -> Text:
