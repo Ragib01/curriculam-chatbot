@@ -123,7 +123,7 @@ class ActionChatGPT(Action):
 
         headers = {
             'Content-Type': 'application/json',
-            'Authorization': f'Bearer {os.getenv('OPENAI_API_KEY')}'
+            'Authorization': f"Bearer {os.getenv('OPENAI_API_KEY')}"
         }
 
         data = {
