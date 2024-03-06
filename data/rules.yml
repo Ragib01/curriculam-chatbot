@@ -21,3 +21,18 @@ rules:
   steps:
   - intent: detail
   - action: action_restaurants_detail
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: faq-category-1
+  - action: action_agri_faq
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: faq-category-2
+  - action: action_agri_faq
+
+- rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_please_rephrase
