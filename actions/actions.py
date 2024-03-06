@@ -80,5 +80,4 @@ class ActionFallback(Action):
         print(answer)
         dispatcher.utter_message(text=answer)
         return []
-
     
