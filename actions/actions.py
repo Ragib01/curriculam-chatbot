@@ -43,7 +43,12 @@ class ChatGPT(object):
         content  = self.prompt + "\n\n" + courses + "\n\n" + question
         body = {
             "model":self.model, 
-            "messages":[{"role": "user", "content": content}]
+            "messages":[{"role": "user", "content": content}],
+            "temperature": 1,
+            "max_tokens": 512,
+            "top_p": 1,
+            "frequency_penalty": 0,
+            "presence_penalty": 0 
         }
         result = requests.post(
             url=self.url,
