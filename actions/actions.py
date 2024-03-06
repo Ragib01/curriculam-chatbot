@@ -7,7 +7,7 @@ import requests
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
-from chatgpt.main import ChatGPT
+from ..chatgpt.main import ChatGPT
 
 # Load environment variables from .env file
 load_dotenv()
