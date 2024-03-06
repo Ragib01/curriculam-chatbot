@@ -89,14 +89,14 @@ class ActionFallback(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # Get the value of the 'gpt' slot
-        gpt_value = tracker.get_slot('gpt')
+        # # Get the value of the 'gpt' slot
+        # gpt_value = tracker.get_slot('gpt')
 
         # Pass the previous results and the current question to your ChatGPT instance
         chatGPT = ChatGPT()
-        previous_results = ""
+        previous_results = tracker.get_slot('gpt')
         question = tracker.latest_message.get('text')
-        answer = chatGPT.ask(previous_results, question, gpt_value)
+        answer = chatGPT.ask(previous_results, question)
 
         # Utter the GPT response
         dispatcher.utter_message(text=answer)
