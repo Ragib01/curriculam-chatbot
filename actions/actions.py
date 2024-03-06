@@ -85,96 +85,17 @@ class ActionRestaurantsDetail(Action):
         answer = chatGPT.ask(previous_results, question)
         dispatcher.utter_message(text = answer)
 
-# class ActionFallback(Action):
-#     def name(self) -> Text:
-#         return "action_agri_faq"
-
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#         question = tracker.latest_message["text"]
-#         answer = chatGPT.ask(question)
-#         dispatcher.utter_message(text=answer)
-#         return []
-    
-class ActionChatGPT(Action):
+class ActionFallback(Action):
     def name(self) -> Text:
         return "action_agri_faq"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        # Get user input
-        user_input = tracker.latest_message.get('text')
-
-        # Call ChatGPT API
-        chatgpt_response = self.call_chatgpt_api(user_input)
-
-        # Send response back to the user
-        dispatcher.utter_message(text=chatgpt_response)
-
+        
+        previous_results = "You are an AI assistant for the user. You help to solve user query"
+        question = tracker.latest_message["text"]
+        answer = chatGPT.ask(previous_results, question)
+        dispatcher.utter_message(text=answer)
         return []
-
-    def call_chatgpt_api(self, user_input: str) -> str:
-        # Replace 'YOUR_API_KEY' with your actual API key
-        api_key = 'YOUR_API_KEY'
-        endpoint = 'https://api.openai.com/v1/chat/completions'
-
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f"Bearer {os.getenv('OPENAI_API_KEY')}"
-        }
-
-        data = {
-            'model': 'text-davinci-003',
-            'messages': [
-                {'role': 'user', 'content': user_input}
-            ]
-        }
-
-        response = requests.post(endpoint, headers=headers, json=data)
-        response_json = response.json()
-
-        if 'choices' in response_json and len(response_json['choices']) > 0:
-            return response_json['choices'][0]['message']['content']
-        else:
-            return "Sorry, I couldn't understand that."
     
-# class ActionAgriFaq(Action):
-
-#     def name(self) -> Text:
-#         return "action_agri_faq"
-
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-#         # print(tracker.latest_message)
-        
-#         # to get intent of user message
-#         _intent=tracker.latest_message['intent'].get('name')
-#         print("Intent of user message predicted by Rasa ",_intent)
-
-#         print(tracker.latest_message['text']) # to get user typed message 
-
-#         intent_found = json.dumps(tracker.latest_message['response_selector'][_intent]['ranking'][0]['intent_response_key'], indent=4)
-        
-#         # confidence of retrieval intent we found
-#         retrieval_intent_confidence = tracker.latest_message['response_selector'][_intent]['response']['confidence']*100
-#         print(f"retrieval_intent_confidence we found was {retrieval_intent_confidence}")
-
-#         if retrieval_intent_confidence < 100:
-#             if "category-1" in _intent:
-#                 print("Custom Fallback for category-1 can be implemented here")
-#                 dispatcher.utter_message(text="Custom Fallback for category-1 can be implemented here")
-#             elif "category-2" in _intent:
-#                 print("Custom Fallback for category-2 can be implemented here")
-#                 dispatcher.utter_message(text="Custom Fallback for category-2 can be implemented here")
-#             return []
-#         #used eval to remove quotes around the string
-#         intent_found = f'utter_{eval(intent_found)}'
-#         print('after adding utter we found -- ', intent_found)
-#         dispatcher.utter_message(response = intent_found) # use response for defining intent name
-        
-#         return [] # setting slot values
