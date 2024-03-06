@@ -27,37 +27,6 @@ class RestaurantAPI(object):
         html += "</table>"
         return html
 
-# class ChatGPT(object):
-#     def __init__(self):
-#         self.url = "https://api.openai.com/v1/chat/completions"
-#         self.model = "gpt-3.5-turbo"
-#         self.headers={
-#             "Content-Type": "application/json",
-#             "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"
-#         }
-#         self.prompt = "Answer the following question, based on the data shown. " \
-#             "Answer in a complete sentence and don't say anything else."
-
-#     def ask(self, courses, question):
-#         print(courses, question)
-#         content  = self.prompt + "\n\n" + courses + "\n\n" + question
-#         body = {
-#             "model":self.model, 
-#             "messages":[{"role": "user", "content": content}],
-#             "temperature": 1,
-#             "max_tokens": 10240,
-#             "top_p": 1,
-#             "frequency_penalty": 0,
-#             "presence_penalty": 0 
-#         }
-#         result = requests.post(
-#             url=self.url,
-#             headers=self.headers,
-#             json=body,
-#         )
-#         response_json = result.json()  # Log the entire JSON response
-#         return response_json.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
-
 class ChatGPT(object):
     def __init__(self):
         self.url = "https://api.openai.com/v1/chat/completions"
@@ -76,35 +45,21 @@ class ChatGPT(object):
             "model":self.model, 
             "messages":[{"role": "user", "content": content}],
             "temperature": 1,
-            "max_tokens": 4096,  # Adjust max_tokens as needed
+            "max_tokens": 10240,
             "top_p": 1,
             "frequency_penalty": 0,
-            "presence_penalty": 0,
-            "stream": True  # Enable streaming
+            "presence_penalty": 0 
         }
-        
-        response_text = ""
-        
-        try:
-            with requests.post(
-                    url=self.url,
-                    headers=self.headers,
-                    json=body,
-                    stream=True,
-            ) as response:
-                for chunk in response.iter_content(chunk_size=1024):
-                    response_text += chunk.decode("utf-8")
-                    
-            response_json = json.loads(response_text)
-            response = response_json.get("choices", [{}])[0].get("message", {}).get("content", "")
-        except Exception as e:
-            print("Error:", e)
-            response = "No content found"
-        
-        return response
+        result = requests.post(
+            url=self.url,
+            headers=self.headers,
+            json=body,
+        )
+        response_json = result.json()  # Log the entire JSON response
+        return response_json.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
 
-restaurant_api = RestaurantAPI()
-chatGPT = ChatGPT()
+# restaurant_api = RestaurantAPI()
+# chatGPT = ChatGPT()
 
 class ActionShowRestaurants(Action):
     def name(self) -> Text:
