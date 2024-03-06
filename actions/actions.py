@@ -35,6 +35,9 @@ class ChatGPT(object):
             "Content-Type": "application/json",
             "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"
         }
+        # self.prompt = "Answer the following question, based on the data shown. " \
+        #     "Answer in a complete sentence and don't say anything else."
+
         self.prompt = "Answer the following question, based on the data shown. " \
             "Answer in a complete sentence and don't say anything else."
 
@@ -99,7 +102,7 @@ class ActionFallback(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        previous_results = "You are an AI assistant for the user. You help to solve user query"
+        previous_results = ""
         question = tracker.latest_message["text"]
         print(question)
         answer = chatGPT.ask(previous_results, question)
