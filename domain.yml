@@ -46,6 +46,11 @@ actions:
   - action_show_restaurants
   - action_restaurants_detail
 
+# 1. Configure Fallback Policy in your domain file
+policies:
+  - name: FallbackPolicy
+    fallback_action_name: action_fallback
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

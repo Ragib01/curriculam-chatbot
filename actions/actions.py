@@ -84,3 +84,15 @@ class ActionRestaurantsDetail(Action):
         question = tracker.latest_message["text"]
         answer = chatGPT.ask(previous_results, question)
         dispatcher.utter_message(text = answer)
+
+class ActionFallback(Action):
+    def name(self) -> Text:
+        return "action_fallback"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        question = tracker.latest_message["text"]
+        answer = chatGPT.ask(question)
+        dispatcher.utter_message(text=answer)
+        return []
