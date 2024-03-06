@@ -59,8 +59,8 @@ class ChatGPT(object):
         print(response_json)
         return response_json.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
 
-# restaurant_api = RestaurantAPI()
-# chatGPT = ChatGPT()
+restaurant_api = RestaurantAPI()
+chatGPT = ChatGPT()
 
 class ActionShowRestaurants(Action):
     def name(self) -> Text:
