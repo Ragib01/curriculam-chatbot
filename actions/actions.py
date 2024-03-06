@@ -72,10 +72,12 @@ class ActionFallback(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         chatGPT = ChatGPT()
+        chatGPT.prompt = ""
         previous_results = ""
         question = tracker.latest_message["text"]
         print(question)
         answer = chatGPT.ask(previous_results, question)
+        print(answer)
         dispatcher.utter_message(text=answer)
         return []
     
