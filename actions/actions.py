@@ -74,8 +74,6 @@ class ActionFallback(Action):
         chatGPT = ChatGPT()
         chatGPT.prompt = ""
         previous_results = ""
-        gpt_value = tracker.get_slot('gpt')
-        print(gpt_value)
         question = tracker.latest_message["text"]
         print(question)
         answer = chatGPT.ask(previous_results, question)
