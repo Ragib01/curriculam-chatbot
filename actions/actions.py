@@ -56,6 +56,7 @@ class ChatGPT(object):
             json=body,
         )
         response_json = result.json()  # Log the entire JSON response
+        print(response_json)
         return response_json.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
 
 # restaurant_api = RestaurantAPI()
