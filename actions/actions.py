@@ -80,43 +80,28 @@ class ActionRestaurantsDetail(Action):
 #         print(answer)
 #         dispatcher.utter_message(text=answer)
 #         return []
-        
+
 class ActionFallback(Action):
-    def name(self):
+    def name(self) -> Text:
         return "action_default_fallback"
 
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain):
-        user_message = tracker.latest_message.get('text')
-        chat_history = self.get_chat_history(tracker)
-        fallback_response = self.get_fallback_response(user_message, chat_history)
-        dispatcher.utter_message(text=fallback_response)
-
-    def get_chat_history(self, tracker):
-        # Retrieve chat history from tracker
-        events = tracker.events
-        chat_history = []
-        for event in events:
-            if 'text' in event['event'] and 'user' in event['event']:
-                chat_history.append(event['event']['text'])
-        return chat_history
-
-    def get_fallback_response(self, user_message, chat_history):
-        # Call ChatGPT API with chat history
-        chatgpt_response = self.call_chatgpt_api(user_message, chat_history)
-        return chatgpt_response
-
-    def call_chatgpt_api(self, user_message, chat_history):
-        # Example code to call ChatGPT API with chat history
-        url = "https://api.openai.com/v1/chat/completions"
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"
-        }
-        data = {"chat_history": chat_history, "user_message": user_message}
-        response = requests.post(url, headers=headers, json=data)
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        if response.status_code == 200:
-            return response.json().get("response")
-        else:
-            return "I'm sorry, I couldn't understand that."
+        # Get the value of the 'gpt' slot
+        gpt_value = tracker.get_slot('gpt')
+
+        # Pass the previous results and the current question to your ChatGPT instance
+        chatGPT = ChatGPT()
+        previous_results = ""
+        question = tracker.latest_message.get('text')
+        answer = chatGPT.ask(previous_results, question, gpt_value)
+
+        # Utter the GPT response
+        dispatcher.utter_message(text=answer)
+
+        # Return an empty list as there are no events to return
+        return []
+        
     
