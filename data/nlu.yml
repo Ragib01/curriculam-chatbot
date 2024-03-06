@@ -122,6 +122,3 @@ nlu:
     - Highest rated course
     - কোনটি ভালো কোর্স?
     - সর্বোচ্চ রেট দেওয়া কোর্স
-
-- intents:
-  - fallback
