@@ -97,8 +97,9 @@ class ActionFallback(Action):
         previous_results = tracker.get_slot("results")
         print(previous_results)
         question = tracker.latest_message["text"]
+        # The 'question' argument is passed when calling the 'ask' method
         answer = chatGPT.ask(previous_results, question)
-        dispatcher.utter_message(text = answer)
+        dispatcher.utter_message(text=answer)
         return []
     
 # class ActionAgriFaq(Action):
