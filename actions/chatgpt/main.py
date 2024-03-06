@@ -9,14 +9,9 @@ class ChatGPT(object):
             "Content-Type": "application/json",
             "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"
         }
-        # self.prompt = "Answer the following question, based on the data shown. " \
-        #     "Answer in a complete sentence and don't say anything else."
-
-        self.prompt = "Answer the following question, based on the data shown. " \
-            "Answer in a complete sentence and don't say anything else."
+        self.prompt = ""
 
     def ask(self, courses, question):
-        print(courses, question)
         content  = self.prompt + "\n\n" + courses + "\n\n" + question
         body = {
             "model":self.model, 
@@ -33,5 +28,4 @@ class ChatGPT(object):
             json=body,
         )
         response_json = result.json()  # Log the entire JSON response
-        print(response_json)
         return response_json.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
