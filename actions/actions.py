@@ -101,6 +101,7 @@ class ActionFallback(Action):
         
         previous_results = "You are an AI assistant for the user. You help to solve user query"
         question = tracker.latest_message["text"]
+        print(question)
         answer = chatGPT.ask(previous_results, question)
         dispatcher.utter_message(text=answer)
         return []
