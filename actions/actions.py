@@ -63,24 +63,6 @@ class ActionRestaurantsDetail(Action):
         answer = chatGPT.ask(previous_results, question)
         dispatcher.utter_message(text = answer)
 
-# class ActionFallback(Action):
-#     def name(self) -> Text:
-#         return "action_default_fallback"
-
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-#         chatGPT = ChatGPT()
-#         chatGPT.prompt = ""
-#         previous_results = ""
-#         question = tracker.latest_message["text"]
-#         print(question)
-#         answer = chatGPT.ask(previous_results, question)
-#         print(answer)
-#         dispatcher.utter_message(text=answer)
-#         return []
-
 class ActionFallback(Action):
     def name(self) -> Text:
         return "action_default_fallback"
@@ -89,19 +71,16 @@ class ActionFallback(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # # Get the value of the 'gpt' slot
-        # gpt_value = tracker.get_slot('gpt')
-
-        # Pass the previous results and the current question to your ChatGPT instance
         chatGPT = ChatGPT()
-        previous_results = tracker.get_slot('gpt')
-        question = tracker.latest_message.get('text')
+        chatGPT.prompt = ""
+        previous_results = ""
+        gpt_value = tracker.get_slot('gpt')
+        print(gpt_value)
+        question = tracker.latest_message["text"]
+        print(question)
         answer = chatGPT.ask(previous_results, question)
-
-        # Utter the GPT response
+        print(answer)
         dispatcher.utter_message(text=answer)
-
-        # Return an empty list as there are no events to return
         return []
-        
+
     
