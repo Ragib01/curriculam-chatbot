@@ -92,8 +92,6 @@ class ActionFallback(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        chatGPT = ChatGPT()
         question = tracker.latest_message["text"]
         answer = chatGPT.ask(question)
         dispatcher.utter_message(text=answer)
