@@ -92,9 +92,13 @@ class ActionFallback(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        chatGPT = ChatGPT()
+        previous_results = tracker.get_slot("results")
+        print(previous_results)
         question = tracker.latest_message["text"]
-        answer = chatGPT.ask(question)
-        dispatcher.utter_message(text=answer)
+        answer = chatGPT.ask(previous_results, question)
+        dispatcher.utter_message(text = answer)
         return []
     
 # class ActionAgriFaq(Action):
