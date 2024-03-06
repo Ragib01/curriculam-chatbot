@@ -55,8 +55,8 @@ class ActionRestaurantsDetail(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         chatGPT = ChatGPT()
-        chatGPT.set_prompt("Answer the following question, based on the data shown. " \
-            "First Calculate and then answer in a complete sentence: ")
+        chatGPT.prompt = "Answer the following question, based on the data shown. " \
+            "First Calculate and then answer in a complete sentence: "
         previous_results = tracker.get_slot("results")
         print(previous_results)
         question = tracker.latest_message["text"]
