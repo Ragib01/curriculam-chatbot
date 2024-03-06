@@ -100,7 +100,7 @@ nlu:
 - intent: about_curriculam_portal_en
   examples: |
     - what is curriculam portal?
-    - tell me somethings about curriculam portal?
+    - about curriculam portal?
 
 - intent: courses
   examples: |
@@ -120,5 +120,6 @@ nlu:
   examples: |
     - what's the highest rated?
     - Highest rated course
+    - Top rated course
     - কোনটি ভালো কোর্স?
     - সর্বোচ্চ রেট দেওয়া কোর্স

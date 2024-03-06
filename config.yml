@@ -75,7 +75,7 @@ pipeline:
     retrieval_intent: faq-category-2
 
   - name: FallbackClassifier
-    threshold: 0.7
+    threshold: 0.9
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
