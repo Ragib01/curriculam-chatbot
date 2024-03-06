@@ -107,8 +107,11 @@ class ActionFallback(Action):
 
     def call_chatgpt_api(self, user_message, chat_history):
         # Example code to call ChatGPT API with chat history
-        url = "YOUR_CHATGPT_API_ENDPOINT"
-        headers = {"Authorization": "Bearer YOUR_API_KEY"}
+        url = "https://api.openai.com/v1/chat/completions"
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"
+        }
         data = {"chat_history": chat_history, "user_message": user_message}
         response = requests.post(url, headers=headers, json=data)
         
