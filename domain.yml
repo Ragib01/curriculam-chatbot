@@ -46,9 +46,8 @@ responses:
 actions:
   - action_show_restaurants
   - action_restaurants_detail
-
-actions:
   - action_fallback
+
 
 # 1. Configure Fallback Policy in your domain file
 # policies:
