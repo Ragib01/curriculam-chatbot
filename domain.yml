@@ -50,7 +50,7 @@ actions:
   - action_show_restaurants
   - action_restaurants_detail
   - action_fallback
-  - action_agri_faq
+  - action_default_fallback
 
 
 # 1. Configure Fallback Policy in your domain file

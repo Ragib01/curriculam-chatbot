@@ -65,7 +65,7 @@ class ActionRestaurantsDetail(Action):
 
 class ActionFallback(Action):
     def name(self) -> Text:
-        return "action_agri_faq"
+        return "action_default_fallback"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
