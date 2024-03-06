@@ -18,6 +18,7 @@ intents:
   - about_curriculam_portal_bn
   - courses
   - detail
+  - fallback
 
 responses:
   utter_greet:
