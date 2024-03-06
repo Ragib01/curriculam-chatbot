@@ -63,21 +63,57 @@ class ActionRestaurantsDetail(Action):
         answer = chatGPT.ask(previous_results, question)
         dispatcher.utter_message(text = answer)
 
+# class ActionFallback(Action):
+#     def name(self) -> Text:
+#         return "action_default_fallback"
+
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+#         chatGPT = ChatGPT()
+#         chatGPT.prompt = ""
+#         previous_results = ""
+#         question = tracker.latest_message["text"]
+#         print(question)
+#         answer = chatGPT.ask(previous_results, question)
+#         print(answer)
+#         dispatcher.utter_message(text=answer)
+#         return []
+        
 class ActionFallback(Action):
-    def name(self) -> Text:
+    def name(self):
         return "action_default_fallback"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain):
+        user_message = tracker.latest_message.get('text')
+        chat_history = self.get_chat_history(tracker)
+        fallback_response = self.get_fallback_response(user_message, chat_history)
+        dispatcher.utter_message(text=fallback_response)
+
+    def get_chat_history(self, tracker):
+        # Retrieve chat history from tracker
+        events = tracker.events
+        chat_history = []
+        for event in events:
+            if 'text' in event['event'] and 'user' in event['event']:
+                chat_history.append(event['event']['text'])
+        return chat_history
+
+    def get_fallback_response(self, user_message, chat_history):
+        # Call ChatGPT API with chat history
+        chatgpt_response = self.call_chatgpt_api(user_message, chat_history)
+        return chatgpt_response
+
+    def call_chatgpt_api(self, user_message, chat_history):
+        # Example code to call ChatGPT API with chat history
+        url = "YOUR_CHATGPT_API_ENDPOINT"
+        headers = {"Authorization": "Bearer YOUR_API_KEY"}
+        data = {"chat_history": chat_history, "user_message": user_message}
+        response = requests.post(url, headers=headers, json=data)
         
-        chatGPT = ChatGPT()
-        chatGPT.prompt = ""
-        previous_results = ""
-        question = tracker.latest_message["text"]
-        print(question)
-        answer = chatGPT.ask(previous_results, question)
-        print(answer)
-        dispatcher.utter_message(text=answer)
-        return []
+        if response.status_code == 200:
+            return response.json().get("response")
+        else:
+            return "I'm sorry, I couldn't understand that."
     

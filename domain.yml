@@ -6,6 +6,11 @@ slots:
     mappings:
     - type: custom
       action: action_show_restaurants
+  gpt:
+    type: text
+    mappings:
+    - type: custom
+      action: action_default_fallback
 
 intents:
   - greet
@@ -18,7 +23,6 @@ intents:
   - about_curriculam_portal_bn
   - courses
   - detail
-  - fallback
 
 responses:
   utter_greet:
