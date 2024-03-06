@@ -59,7 +59,7 @@ pipeline:
     analyzer: "char_wb"
     min_ngram: 1
     max_ngram: 4
-  - name: "EmbeddingIntentClassifier"
+  - name: "DIETClassifier"
     epochs: 20
     random_seed: 42
 
