@@ -12,15 +12,15 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: show courses
-  steps:
-  - intent: courses
-  - action: action_show_restaurants
+# - rule: show courses
+#   steps:
+#   - intent: courses
+#   - action: action_show_restaurants
 
-- rule: show detail
-  steps:
-  - intent: detail
-  - action: action_restaurants_detail
+# - rule: show detail
+#   steps:
+#   - intent: detail
+#   - action: action_restaurants_detail
 
 - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
   steps:
