@@ -11,11 +11,14 @@ class ChatGPT(object):
         }
         self.prompt = ""
 
-    def ask(self, courses, question):
-        content  = self.prompt + "\n\n" + courses + "\n\n" + question
+    def ask(self, context, question):
+        content  = self.prompt + "\n\n" + context + "\n\n" + question
         body = {
             "model":self.model, 
-            "messages":[{"role": "user", "content": content}],
+            "messages":[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": content}
+            ],
             "temperature": 1,
             "max_tokens": 2048,
             "top_p": 1,
