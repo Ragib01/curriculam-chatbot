@@ -4,6 +4,9 @@ slots:
   results:
     type: text
     initial_value: None
+    mappings:
+    - type: custom
+      action: action_show_restaurants
 
 intents:
   - greet
