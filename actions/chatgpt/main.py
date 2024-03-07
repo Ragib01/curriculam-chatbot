@@ -30,5 +30,6 @@ class ChatGPT(object):
             headers=self.headers,
             json=body,
         )
-        response_json = result.json()  # Log the entire JSON response
+        response_json = result.json() 
+        print(response_json)
         return response_json.get("choices", [{}])[0].get("message", {}).get("content", "No content found")
