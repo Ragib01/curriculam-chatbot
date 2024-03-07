@@ -12,56 +12,56 @@ from .chatgpt.main import ChatGPT
 # Load environment variables from .env file
 load_dotenv()
 
-class RestaurantAPI(object):
-    def __init__(self):
-        with open("courses.json", "r") as json_file:
-            self.db = json.load(json_file)
+# class RestaurantAPI(object):
+#     def __init__(self):
+#         with open("courses.json", "r") as json_file:
+#             self.db = json.load(json_file)
 
-    def fetch_restaurants(self):
-        return pd.DataFrame(self.db["courses"])
+#     def fetch_restaurants(self):
+#         return pd.DataFrame(self.db["courses"])
 
-    def format_restaurants(self, df) -> str:
-        html = "<table style='border-collapse: collapse; border: 1px solid black;'>"
-        html += "<tr><th style='border: 1px solid black;'>কোর্সের নাম</th><th style='border: 1px solid black;'>রেটিং</th><th style='border: 1px solid black;'>প্রদানকারী</th><th style='border: 1px solid black;'>সময়</th></tr>"
-        for _, row in df.iterrows():
-            html += f"<tr><td style='border: 1px solid black;'>{row['course_name_bn']}</td><td style='border: 1px solid black;'>{row['Rating']}</td><td style='border: 1px solid black;'>{row['provider']}</td><td style='border: 1px solid black;'>{row['time']}</td></tr>"
-        html += "</table>"
-        return html
+#     def format_restaurants(self, df) -> str:
+#         html = "<table style='border-collapse: collapse; border: 1px solid black;'>"
+#         html += "<tr><th style='border: 1px solid black;'>কোর্সের নাম</th><th style='border: 1px solid black;'>রেটিং</th><th style='border: 1px solid black;'>প্রদানকারী</th><th style='border: 1px solid black;'>সময়</th></tr>"
+#         for _, row in df.iterrows():
+#             html += f"<tr><td style='border: 1px solid black;'>{row['course_name_bn']}</td><td style='border: 1px solid black;'>{row['Rating']}</td><td style='border: 1px solid black;'>{row['provider']}</td><td style='border: 1px solid black;'>{row['time']}</td></tr>"
+#         html += "</table>"
+#         return html
 
 
 
-restaurant_api = RestaurantAPI()
+# restaurant_api = RestaurantAPI()
 
-class ActionShowRestaurants(Action):
-    def name(self) -> Text:
-        return "action_show_restaurants"
+# class ActionShowRestaurants(Action):
+#     def name(self) -> Text:
+#         return "action_show_restaurants"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        restaurant_api = RestaurantAPI()
-        courses = restaurant_api.fetch_restaurants()
-        html_table = restaurant_api.format_restaurants(courses)
-        dispatcher.utter_message(text=f"নিচে কিছু কোর্সের তালিকা দেওয়া হল:\n\n{html_table}")
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         restaurant_api = RestaurantAPI()
+#         courses = restaurant_api.fetch_restaurants()
+#         html_table = restaurant_api.format_restaurants(courses)
+#         dispatcher.utter_message(text=f"নিচে কিছু কোর্সের তালিকা দেওয়া হল:\n\n{html_table}")
 
-        return [SlotSet("results", html_table)]
+#         return [SlotSet("results", html_table)]
 
-class ActionRestaurantsDetail(Action):
-    def name(self) -> Text:
-        return "action_restaurants_detail"
+# class ActionRestaurantsDetail(Action):
+#     def name(self) -> Text:
+#         return "action_restaurants_detail"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        chatGPT = ChatGPT()
-        chatGPT.prompt = "Answer the following question, based on the data shown. " \
-            "First Calculate and then answer in a complete sentence: "
-        previous_results = tracker.get_slot("results")
-        print(previous_results)
-        question = tracker.latest_message["text"]
-        answer = chatGPT.ask(previous_results, question)
-        dispatcher.utter_message(text = answer)
+#         chatGPT = ChatGPT()
+#         chatGPT.prompt = "Answer the following question, based on the data shown. " \
+#             "First Calculate and then answer in a complete sentence: "
+#         previous_results = tracker.get_slot("results")
+#         print(previous_results)
+#         question = tracker.latest_message["text"]
+#         answer = chatGPT.ask(previous_results, question)
+#         dispatcher.utter_message(text = answer)
 
 class ActionFallback(Action):
     def name(self) -> Text:
